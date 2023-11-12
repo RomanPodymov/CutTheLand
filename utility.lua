@@ -1,3 +1,4 @@
+local composer = require("composer")
 local widget = require("widget")
 local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
 local GBCDataCabinet = require("plugin.GBCDataCabinet")
@@ -19,8 +20,7 @@ end
 
 function M.createBackground()
     local background = display.newRect(0, 0, display.contentWidth, display.contentHeight)
-    background.strokeWidth = 3
-    background:setStrokeColor( 1, 0, 0 )
+    background:setFillColor(0.8, 0.8, 0.8)
     return background
 end
 
@@ -81,6 +81,18 @@ function M.getUserLevel()
     	GBCDataCabinet.save(M.databaseName())
     end
     return availableLevelsForUser
+end
+
+function M.removeAllScenes()
+    composer.removeScene("menu")
+    composer.removeScene("levelselect")
+    composer.removeScene("help")
+    composer.removeScene("game")
+end
+
+function M.goToScene(sceneName)
+    M.removeAllScenes()
+    composer.gotoScene(sceneName, M.transitionParams())
 end
 
 return M

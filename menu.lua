@@ -7,17 +7,13 @@ local scene = composer.newScene()
  
 local function handlePlayButtonEvent(event)
     if (event.phase == "ended") then
-        composer.removeScene("menu")
-        composer.removeScene("levelselect")
-        composer.gotoScene("levelselect", utility.transitionParams())
+        utility.goToScene("levelselect")
     end
 end
 
 local function handleHelpButtonEvent(event)
     if (event.phase == "ended") then
-        local overlayOptions = utility.transitionParams()
-        overlayOptions.isModal = true
-        composer.showOverlay("help", overlayOptions)
+        utility.goToScene("help")
     end
 end
 

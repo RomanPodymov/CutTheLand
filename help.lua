@@ -7,8 +7,7 @@ local scene = composer.newScene()
 
 local function handleButtonEvent(event)
     if (event.phase == "ended") then
-        local overlayOptions = utility.transitionParams()
-        composer.hideOverlay(true, overlayOptions["effect"], overlayOptions["time"])
+        utility.goToScene("menu")
     end
     return true
 end
