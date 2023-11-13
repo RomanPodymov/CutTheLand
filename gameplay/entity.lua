@@ -85,7 +85,7 @@ function Entity()
 		
 	end
 
-	function self.onEntityNeedsToChangePositionOnBoard (j,direction,ent)
+	function self.onEntityNeedsToChangePositionOnBoard(j, direction, ent)
         
     end
 

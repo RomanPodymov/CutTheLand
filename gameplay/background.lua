@@ -50,16 +50,16 @@ function Background(_centerX, _centerY, _width, _height)
         return p
     end
 
-    function self.createPlayer(startY, playerStartX, sceneGroup, eventsTimeInterval, stageNumber)
-        return self.createEntity(startY, playerStartX, sceneGroup, eventsTimeInterval, stageNumber, Player)
+    function self.createPlayer(startY, startX, sceneGroup, eventsTimeInterval, stageNumber)
+        return self.createEntity(startY, startX, sceneGroup, eventsTimeInterval, stageNumber, Player)
     end
 
-    function self.createEnemy(startY, enemyStartX, sceneGroup, eventsTimeInterval, stageNumber)
-        return self.createEntity(startY, enemyStartX, sceneGroup, eventsTimeInterval, stageNumber, Enemy)
+    function self.createEnemy(startY, startX, sceneGroup, eventsTimeInterval, stageNumber)
+        return self.createEntity(startY, startX, sceneGroup, eventsTimeInterval, stageNumber, Enemy)
     end
     
-    function self.createWaterEnemy(enemyStartY, enemyStartX, sceneGroup, eventsTimeInterval, stageNumber)
-        return self.createEntity(enemyStartY, playerStartX, sceneGroup, eventsTimeInterval, stageNumber, WaterEnemy)
+    function self.createWaterEnemy(startY, startX, sceneGroup, eventsTimeInterval, stageNumber)
+        return self.createEntity(startY, startX, sceneGroup, eventsTimeInterval, stageNumber, WaterEnemy)
     end
 
     function self.printBackground()
@@ -311,94 +311,60 @@ function Background(_centerX, _centerY, _width, _height)
         end
     end
 
-    function self.tryToUnlockPlayer(indexI,indexJ,direction,ent)
-    	if direction == MOVE_DIRECTION_LEFT then
-            if (not (self.canMoveLeft(indexI, indexJ) == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_RIGHT then
-            if (not (self.canMoveRight(indexI, indexJ) == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_DOWN then
-            if (not (self.canMoveDown(indexI, indexJ) == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_UP then
-            if (not (self.canMoveUp(indexI, indexJ) == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
+    function self.tryToUnlockPlayer(indexI, indexJ, direction, ent)
+        local items = {
+            {direction = MOVE_DIRECTION_LEFT, handler = self.canMoveLeft},
+            {direction = MOVE_DIRECTION_RIGHT, handler = self.canMoveRight},
+            {direction = MOVE_DIRECTION_DOWN, handler = self.canMoveDown},
+            {direction = MOVE_DIRECTION_UP, handler = self.canMoveUp}
+        }
+        for key, item in pairs(items) do
+            if direction == item.direction then
+                if not(item.handler(indexI, indexJ) == MOVE_KIND_NONE) then
+                    ent.locked = false
+                else
+                    ent.locked = true
+                end
+                break
             end
         end
     end
 
-    function self.tryToUnlockEnemy (indexI,indexJ,direction,ent)
-    	if direction == MOVE_DIRECTION_LEFT then
-    		local canMoveLeftVar = self.canMoveLeft(indexI, indexJ)
-            if (not (canMoveLeftVar == MOVE_KIND_NONE or canMoveLeftVar == MOVE_KIND_CUT)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_RIGHT then
-            local canMoveRightVar = self.canMoveRight(indexI, indexJ)
-            if (not (canMoveRightVar == MOVE_KIND_NONE or canMoveRightVar == MOVE_KIND_CUT)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_DOWN then
-        	local canMoveDownVar = self.canMoveDown(indexI, indexJ)
-            if (not (canMoveDownVar == MOVE_KIND_NONE or canMoveDownVar == MOVE_KIND_CUT)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_UP then
-            local canMoveUpVar = self.canMoveUp(indexI, indexJ)
-            if (not (canMoveUpVar == MOVE_KIND_NONE or canMoveUpVar == MOVE_KIND_CUT)) then
-                ent.locked = false
-            else
-                ent.locked = true
+    function self.tryToUnlockEnemy(indexI, indexJ, direction, ent)
+        local items = {
+            {direction = MOVE_DIRECTION_LEFT, handler = self.canMoveLeft},
+            {direction = MOVE_DIRECTION_RIGHT, handler = self.canMoveRight},
+            {direction = MOVE_DIRECTION_DOWN, handler = self.canMoveDown},
+            {direction = MOVE_DIRECTION_UP, handler = self.canMoveUp}
+        }
+        for key, item in pairs(items) do
+            if direction == item.direction then
+                local canMoveVar = item.handler(indexI, indexJ)
+                if not(canMoveVar == MOVE_KIND_NONE or canMoveVar == MOVE_KIND_CUT) then
+                    ent.locked = false
+                else
+                    ent.locked = true
+                end
+                break
             end
         end
     end
 
     function self.tryToUnlockWaterEnemy (indexI,indexJ,direction,ent)
-        if direction == MOVE_DIRECTION_UP_RIGHT then
-            local canMoveVar = self.canMoveUpRight(indexI, indexJ)
-            if (not (canMoveVar == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_DOWN_RIGHT then
-            local canMoveVar = self.canMoveDownRight(indexI, indexJ)
-            if (not (canMoveVar == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_DOWN_LEFT then
-            local canMoveVar = self.canMoveDownLeft(indexI, indexJ)
-            if (not (canMoveVar == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
-            end
-        elseif direction == MOVE_DIRECTION_UP_LEFT then
-            local canMoveVar = self.canMoveUpLeft(indexI, indexJ)
-            if (not (canMoveVar == MOVE_KIND_NONE)) then
-                ent.locked = false
-            else
-                ent.locked = true
+        local items = {
+            {direction = MOVE_DIRECTION_UP_RIGHT, handler = self.canMoveUpRight},
+            {direction = MOVE_DIRECTION_DOWN_RIGHT, handler = self.canMoveDownRight},
+            {direction = MOVE_DIRECTION_DOWN_LEFT, handler = self.canMoveDownLeft},
+            {direction = MOVE_DIRECTION_UP_LEFT, handler = self.canMoveUpLeft}
+        }
+        for key, item in pairs(items) do
+            if direction == item.direction then
+                if not(item.handler(indexI, indexJ) == MOVE_KIND_NONE) then
+                    ent.locked = false
+                else
+                    ent.locked = true
+                end
+                break
             end
         end
     end
