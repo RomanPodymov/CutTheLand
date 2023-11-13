@@ -9,7 +9,6 @@ MOVE_DIRECTION_DOWN_LEFT = 7
 MOVE_DIRECTION_UP_LEFT = 8
 
 function Entity()
-
 	local self = {
 		drawable = nil,
 		moveDirection = nil,
@@ -23,7 +22,7 @@ function Entity()
         needToStop = false
 	}
 
-	function self.createEntity (initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+	function self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
 		self.drawable = nil
 		self.moveDirection = MOVE_DIRECTION_NONE
 		self.indexI = initialIndexI

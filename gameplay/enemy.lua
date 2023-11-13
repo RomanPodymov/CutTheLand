@@ -8,10 +8,10 @@ local ENEMY_COLOR_FILL_B = 0x00/255.0
 function Enemy()
     local self = Entity()
 
-	function self.createEnemy (initial_position_x, intial_position_y, initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
-		self.createEntity(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
-        self.drawable = display.newCircle( initial_position_x, intial_position_y, size/2.0 )
-        self.drawable:setFillColor(ENEMY_COLOR_FILL_R,ENEMY_COLOR_FILL_G,ENEMY_COLOR_FILL_B,1.0)
+	function self.createEntity(initial_position_x, intial_position_y, initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+		self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+        self.drawable = display.newCircle(initial_position_x, intial_position_y, size/2.0)
+        self.drawable:setFillColor(ENEMY_COLOR_FILL_R, ENEMY_COLOR_FILL_G, ENEMY_COLOR_FILL_B, 1.0)
         self.moveDirection = MOVE_DIRECTION_DOWN
 	end
 

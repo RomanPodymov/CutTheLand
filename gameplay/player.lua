@@ -14,10 +14,10 @@ MOVE_KIND_TAIL = 4
 function Player()
     local self = Entity()
 
-	function self.createPlayer (initial_position_x, intial_position_y, initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
-		self.createEntity(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
-        self.drawable = display.newCircle( initial_position_x, intial_position_y, size/2.0 )
-        self.drawable:setFillColor(PLAYER_COLOR_FILL_R,PLAYER_COLOR_FILL_G,PLAYER_COLOR_FILL_B,1.0)
+	function self.createEntity(initial_position_x, intial_position_y, initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+		self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+        self.drawable = display.newCircle(initial_position_x, intial_position_y, size/2.0)
+        self.drawable:setFillColor(PLAYER_COLOR_FILL_R, PLAYER_COLOR_FILL_G, PLAYER_COLOR_FILL_B, 1.0)
 	end
 
 	function self.onSwipeBase(firstDir, secondDir)

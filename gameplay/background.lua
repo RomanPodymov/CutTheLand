@@ -36,13 +36,13 @@ function Background(_centerX, _centerY, _width, _height)
     	self.createScene(sceneGroup, eventsTimeInterval, true, stageNumber)
 	end
 
-    function self.createPlayer(playerStartY,playerStartX,sceneGroup,eventsTimeInterval,stageNumber)
+    function self.createEntity(startY, startX, sceneGroup, eventsTimeInterval, stageNumber, entityClass)
         local currentStage = stages.getStage(stageNumber)
-        local p = Player()
-        p.createPlayer(centerX - width/2.0 + playerStartX * part_size - part_size/2.0,
-                       centerY + height/2.0 + playerStartY * part_size - part_size/2.0 - (part_size * #currentStage),
-                       playerStartY,
-                       playerStartX,
+        local p = entityClass()
+        p.createEntity(centerX - width/2.0 + startX * part_size - part_size/2.0,
+                       centerY + height/2.0 + startY * part_size - part_size/2.0 - (part_size * #currentStage),
+                       startY,
+                       startX,
                        part_size,
                        self,
                        eventsTimeInterval)
@@ -50,32 +50,16 @@ function Background(_centerX, _centerY, _width, _height)
         return p
     end
 
-    function self.createEnemy(enemyStartY,enemyStartX,sceneGroup,eventsTimeInterval,stageNumber)
-        local currentStage = stages.getStage(stageNumber)
-        local e = Enemy()
-        e.createEnemy(centerX - width/2.0 + enemyStartX * part_size - part_size/2.0,
-                      centerY + height/2.0 + enemyStartY * part_size - part_size/2.0 - (part_size * #currentStage),
-                      enemyStartY,
-                      enemyStartX,
-                      part_size,
-                      self,
-                      eventsTimeInterval)
-        table.insert(enteties, e)
-        return e
+    function self.createPlayer(startY, playerStartX, sceneGroup, eventsTimeInterval, stageNumber)
+        return self.createEntity(startY, playerStartX, sceneGroup, eventsTimeInterval, stageNumber, Player)
+    end
+
+    function self.createEnemy(startY, enemyStartX, sceneGroup, eventsTimeInterval, stageNumber)
+        return self.createEntity(startY, enemyStartX, sceneGroup, eventsTimeInterval, stageNumber, Enemy)
     end
     
-    function self.createWaterEnemy(enemyStartY,enemyStartX,sceneGroup,eventsTimeInterval,stageNumber)
-        local currentStage = stages.getStage(stageNumber)
-        local e = WaterEnemy()
-        e.createWaterEnemy(centerX - width/2.0 + enemyStartX * part_size - part_size/2.0,
-                      	   centerY + height/2.0 + enemyStartY * part_size - part_size/2.0 - (part_size * #currentStage),
-                           enemyStartY,
-                           enemyStartX,
-                           part_size,
-                           self,
-                           eventsTimeInterval)
-        table.insert(enteties, e)
-        return e
+    function self.createWaterEnemy(enemyStartY, enemyStartX, sceneGroup, eventsTimeInterval, stageNumber)
+        return self.createEntity(enemyStartY, playerStartX, sceneGroup, eventsTimeInterval, stageNumber, WaterEnemy)
     end
 
     function self.printBackground()
@@ -278,55 +262,52 @@ function Background(_centerX, _centerY, _width, _height)
         end
     end
 
-    function self.onMoveLeft(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,0,-1,self.canMoveLeft)
+    function self.onMoveLeft(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, 0, -1, self.canMoveLeft)
     end
 
-    function self.onMoveRight(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,0,1,self.canMoveRight)
+    function self.onMoveRight(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, 0, 1, self.canMoveRight)
     end
 
-    function self.onMoveUp(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,-1,0,self.canMoveUp)
+    function self.onMoveUp(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, -1, 0, self.canMoveUp)
     end
 
-    function self.onMoveDown(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,1,0,self.canMoveDown)
+    function self.onMoveDown(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, 1, 0, self.canMoveDown)
     end
 
-    function self.onMoveUpRight(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,-1,1,self.canMoveUpRight)
+    function self.onMoveUpRight(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, -1, 1, self.canMoveUpRight)
     end
 
-    function self.onMoveDownRight(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,1,1,self.canMoveDownRight)
+    function self.onMoveDownRight(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, 1, 1, self.canMoveDownRight)
     end
 
-    function self.onMoveDownLeft(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,1,-1,self.canMoveDownLeft)
+    function self.onMoveDownLeft(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, 1, -1, self.canMoveDownLeft)
     end       
 
-    function self.onMoveUpLeft(indexI,indexJ,direction,ent)
-        self.onMoveBase(indexI,indexJ,direction,ent,-1,-1,self.canMoveUpLeft)
+    function self.onMoveUpLeft(indexI, indexJ, direction, ent)
+        self.onMoveBase(indexI, indexJ, direction, ent, -1, -1, self.canMoveUpLeft)
     end
 
     function self.onEntityNeedsToChangePositionOnBoard (indexI,indexJ,direction,ent)
-        if direction == MOVE_DIRECTION_LEFT then
-            self.onMoveLeft(indexI,indexJ,direction,ent)
-        elseif direction == MOVE_DIRECTION_RIGHT then
-            self.onMoveRight(indexI,indexJ,direction,ent)
-        elseif direction == MOVE_DIRECTION_DOWN then
-            self.onMoveDown(indexI,indexJ,direction,ent)
-        elseif direction == MOVE_DIRECTION_UP then
-            self.onMoveUp(indexI,indexJ,direction,ent)
-        elseif direction == MOVE_DIRECTION_UP_RIGHT then
-            self.onMoveUpRight(indexI,indexJ,direction,ent)
-        elseif direction == MOVE_DIRECTION_DOWN_RIGHT then
-            self.onMoveDownRight(indexI,indexJ,direction,ent)
-        elseif direction == MOVE_DIRECTION_DOWN_LEFT then
-            self.onMoveDownLeft(indexI,indexJ,direction,ent)    
-        elseif direction == MOVE_DIRECTION_UP_LEFT then
-            self.onMoveUpLeft(indexI,indexJ,direction,ent)        
+        local handlers = {
+            [MOVE_DIRECTION_LEFT] = self.onMoveLeft,
+            [MOVE_DIRECTION_RIGHT] = self.onMoveRight,
+            [MOVE_DIRECTION_DOWN] = self.onMoveDown,
+            [MOVE_DIRECTION_UP] = self.onMoveUp,
+            [MOVE_DIRECTION_UP_RIGHT] = self.onMoveUpRight,
+            [MOVE_DIRECTION_DOWN_RIGHT] = self.onMoveDownRight,
+            [MOVE_DIRECTION_DOWN_LEFT] = self.onMoveDownLeft,
+            [MOVE_DIRECTION_UP_LEFT] = self.onMoveUpLeft
+        }
+        local directionFunction = handlers[direction]
+        if (directionFunction) then
+            directionFunction(indexI, indexJ, direction, ent)
         end
     end
 
