@@ -14,20 +14,14 @@ local levelButtonVerticSpace = 10
 
 local function handleButtonEvent(event)
     if (event.phase == "ended") then
-        composer.removeScene("levelSelect", false)
-        composer.removeScene("menu", false)
-        composer.gotoScene("menu", utility.transitionParams())
+        utility.goToScene("menu")
     end
 end
 
 local function handleLevelSelect( event )
     if (event.phase == "ended") then
     	local buttonId = event.target.id
-    	transitionOptions = utility.transitionParams()
-    	transitionOptions.params = {selectedLevel = buttonId}
-        composer.removeScene("levelSelect", false)
-        composer.removeScene("game", false)
-        composer.gotoScene("game", transitionOptions)
+        utility.goToScene("game", {selectedLevel = buttonId})
     end
 end
 

@@ -80,7 +80,7 @@ end
 
 local function systemEvents(event)
     if event.type == "applicationStart" then
-        composer.gotoScene("menu", utility.transitionParams())
+        utility.goToScene("menu")
     end
     return true
 end

@@ -88,11 +88,16 @@ function M.removeAllScenes()
     composer.removeScene("levelselect")
     composer.removeScene("help")
     composer.removeScene("game")
+    composer.removeScene("gameover")
+    composer.removeScene("nextlevel")
 end
 
-function M.goToScene(sceneName)
+function M.goToScene(sceneName, additionalParams)
     M.removeAllScenes()
-    composer.gotoScene(sceneName, M.transitionParams())
+    local transitionParams = M.transitionParams()
+    transitionParams.params = transitionParams.params or {}
+    for k,v in pairs(additionalParams or {}) do transitionParams.params[k] = v end
+    composer.gotoScene(sceneName, transitionParams)
 end
 
 return M

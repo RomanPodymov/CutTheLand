@@ -27,7 +27,7 @@ local function onBackBtnPressed(event)
 end
 
 local function handleWin()
-    utility.goToScene("nextLevel")
+    utility.goToScene("nextLevel", {selectedLevelKey = selectedLevel})
 end
 
 local function handleLoss()
