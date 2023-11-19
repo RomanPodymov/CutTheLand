@@ -65,6 +65,20 @@ function Entity()
 		return result
 	end
 
+    function self.nextDirection(direction)
+        local directions = {
+            MOVE_DIRECTION_LEFT,
+            MOVE_DIRECTION_UP,
+            MOVE_DIRECTION_RIGHT,
+            MOVE_DIRECTION_DOWN
+        }
+        for i, v in ipairs(directions) do
+            if v == direction then
+                return directions[(i + 1) % 4]
+            end
+         end
+    end
+    
 	function self.onSwipeLeft( )
 
 	end
