@@ -66,6 +66,7 @@ function Entity()
 	end
 
     function self.nextDirection(direction)
+        local directionToUse = direction or self.moveDirection
         local directions = {
             MOVE_DIRECTION_LEFT,
             MOVE_DIRECTION_UP,
@@ -73,12 +74,27 @@ function Entity()
             MOVE_DIRECTION_DOWN
         }
         for i, v in ipairs(directions) do
-            if v == direction then
-                return directions[(i + 1) % 4]
+            if v == directionToUse then
+                return directions[(i + 1) % table.getn(directions)]
             end
          end
     end
     
+    function self.nextAdditionalDirection(direction)
+        local directionToUse = direction or self.moveDirection
+        local directions = {
+            MOVE_DIRECTION_UP_RIGHT,
+            MOVE_DIRECTION_DOWN_RIGHT,
+            MOVE_DIRECTION_DOWN_LEFT,
+            MOVE_DIRECTION_UP_LEFT
+        }
+        for i, v in ipairs(directions) do
+            if v == directionToUse then
+                return directions[(i + 1) % table.getn(directions)]
+            end
+         end
+    end
+
 	function self.onSwipeLeft( )
 
 	end

@@ -21,46 +21,46 @@ function Enemy()
             self.moveCoords()
         else
             if self.moveDirection == MOVE_DIRECTION_LEFT then
-                self.moveDirection = self.nextDirection(self.moveDirection)
+                self.moveDirection = self.nextDirection()
                 self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if self.locked then
-                    self.moveDirection = self.nextDirection(self.moveDirection)
+                    self.moveDirection = self.nextDirection()
                     self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     if self.locked then
-                        self.moveDirection = self.nextDirection(self.moveDirection)
+                        self.moveDirection = self.nextDirection()
                         self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     end
                 end
             elseif self.moveDirection == MOVE_DIRECTION_RIGHT then
-                self.moveDirection = self.nextDirection(self.moveDirection)
+                self.moveDirection = self.nextDirection()
                 self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if self.locked then
-                    self.moveDirection = self.nextDirection(self.moveDirection)
+                    self.moveDirection = self.nextDirection()
                     self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     if self.locked then
-                        self.moveDirection = self.nextDirection(self.moveDirection)
+                        self.moveDirection = self.nextDirection()
                         self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     end
                 end            
             elseif self.moveDirection == MOVE_DIRECTION_UP then
-                self.moveDirection = self.nextDirection(self.moveDirection)
+                self.moveDirection = self.nextDirection()
                 self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if self.locked then
-                    self.moveDirection = self.nextDirection(self.moveDirection)
+                    self.moveDirection = self.nextDirection()
                     self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     if self.locked then
-                        self.moveDirection = self.nextDirection(self.moveDirection)
+                        self.moveDirection = self.nextDirection()
                         self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     end
                 end              
             elseif self.moveDirection == MOVE_DIRECTION_DOWN then
-                self.moveDirection = self.nextDirection(self.moveDirection)
+                self.moveDirection = self.nextDirection()
                 self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if self.locked then
-                    self.moveDirection = self.nextDirection(self.moveDirection)
+                    self.moveDirection = self.nextDirection()
                     self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     if self.locked then
-                        self.moveDirection = self.nextDirection(self.moveDirection)
+                        self.moveDirection = self.nextDirection()
                         self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     end
                 end
@@ -68,13 +68,13 @@ function Enemy()
                 self.moveDirection = MOVE_DIRECTION_UP
                 self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if self.locked then
-                    self.moveDirection = self.nextDirection(self.moveDirection)
+                    self.moveDirection = self.nextDirection()
                     self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                     if self.locked then
-                        self.moveDirection = self.nextDirection(self.moveDirection)
+                        self.moveDirection = self.nextDirection()
                         self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                         if self.locked then
-                            self.moveDirection = self.nextDirection(self.moveDirection)
+                            self.moveDirection = self.nextDirection()
                             self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                         end
                     end
