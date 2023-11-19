@@ -20,66 +20,14 @@ function Enemy()
         if not (self.locked) then
             self.moveCoords()
         else
-            if self.moveDirection == MOVE_DIRECTION_LEFT then
+            local initialDirection = self.moveDirection
+            repeat
                 self.moveDirection = self.nextDirection()
                 self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextDirection()
-                    self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextDirection()
-                        self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
+                if not self.locked then
+                    break
                 end
-            elseif self.moveDirection == MOVE_DIRECTION_RIGHT then
-                self.moveDirection = self.nextDirection()
-                self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextDirection()
-                    self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextDirection()
-                        self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
-                end            
-            elseif self.moveDirection == MOVE_DIRECTION_UP then
-                self.moveDirection = self.nextDirection()
-                self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextDirection()
-                    self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextDirection()
-                        self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
-                end              
-            elseif self.moveDirection == MOVE_DIRECTION_DOWN then
-                self.moveDirection = self.nextDirection()
-                self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextDirection()
-                    self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextDirection()
-                        self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
-                end
-            else
-                self.moveDirection = MOVE_DIRECTION_UP
-                self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextDirection()
-                    self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextDirection()
-                        self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                        if self.locked then
-                            self.moveDirection = self.nextDirection()
-                            self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                        end
-                    end
-                end
-            end
+            until (self.moveDirection ~= initialDirection)
         end
         self.makeDecision()
 	end
