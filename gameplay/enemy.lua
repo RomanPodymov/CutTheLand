@@ -21,13 +21,17 @@ function Enemy()
             self.moveCoords()
         else
             local initialDirection = self.moveDirection
-            repeat
-                self.moveDirection = self.nextDirection()
+            while (true) do
+                local nextDirectionValue = self.nextDirection()
+                if nextDirectionValue == initialDirection then
+                    break
+                end
+                self.moveDirection = nextDirectionValue
                 self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if not self.locked then
                     break
                 end
-            until (self.moveDirection ~= initialDirection)
+            end
         end
         self.makeDecision()
 	end
