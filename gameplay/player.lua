@@ -33,23 +33,23 @@ function Player()
 		end
 	end
 
-	function self.onSwipeLeft( )
+	function self.onSwipeLeft()
 		self.onSwipeBase(MOVE_DIRECTION_RIGHT, MOVE_DIRECTION_LEFT)
 	end
 
-	function self.onSwipeRight( )
+	function self.onSwipeRight()
 		self.onSwipeBase(MOVE_DIRECTION_LEFT, MOVE_DIRECTION_RIGHT)
 	end
 
-	function self.onSwipeTop( )
+	function self.onSwipeTop()
 		self.onSwipeBase(MOVE_DIRECTION_DOWN, MOVE_DIRECTION_UP)
 	end
 
-	function self.onSwipeBottom( )
+	function self.onSwipeBottom()
 		self.onSwipeBase(MOVE_DIRECTION_UP, MOVE_DIRECTION_DOWN)
 	end
 
-	function self.onMove ( )
+	function self.onMove()
 		if self.needToStop then
 			self.moveDirection = MOVE_DIRECTION_NONE
 			self.needToStop = false
@@ -68,11 +68,11 @@ function Player()
         end
 	end
 
-	function self.cellType ( )
+	function self.cellType()
         return CELL_STATE_PLAYER
     end
 
-    function self.destroyObject ()
+    function self.destroyObject()
         
     end
 

@@ -19,7 +19,8 @@ function Entity()
 		locked = false,
         eventsTimeInterval = 1000,
         isCutting = false,
-        needToStop = false
+        needToStop = false,
+        directions = {}
 	}
 
 	function self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
@@ -67,30 +68,18 @@ function Entity()
 
     function self.nextDirection(direction)
         local directionToUse = direction or self.moveDirection
-        if directionToUse == MOVE_DIRECTION_LEFT then
-            return MOVE_DIRECTION_UP
-        elseif directionToUse == MOVE_DIRECTION_UP then
-            return MOVE_DIRECTION_RIGHT
-        elseif directionToUse == MOVE_DIRECTION_RIGHT then
-            return MOVE_DIRECTION_DOWN
-        elseif directionToUse == MOVE_DIRECTION_DOWN then
-            return MOVE_DIRECTION_LEFT
+        if directionToUse == nil then
+            return self.directions[1]
         end
-    end
-    
-    function self.nextAdditionalDirection(direction)
-        local directionToUse = direction or self.moveDirection
-        local directions = {
-            MOVE_DIRECTION_UP_RIGHT,
-            MOVE_DIRECTION_DOWN_RIGHT,
-            MOVE_DIRECTION_DOWN_LEFT,
-            MOVE_DIRECTION_UP_LEFT
-        }
-        for i, v in ipairs(directions) do
+        for i, v in ipairs(self.directions) do
             if v == directionToUse then
-                return directions[(i + 1) % (table.getn(directions) + 1)]
+                local nextIndex = i + 1
+                if nextIndex == table.getn(self.directions) + 2 then
+                    nextIndex = 1
+                end 
+                return self.directions[index]
             end
-         end
+        end
     end
 
 	function self.onSwipeLeft( )
@@ -135,6 +124,26 @@ function Entity()
 
     function self.canFightWithPlayer()
 
+    end
+
+    function self.onMoveBase()
+        self.background.onEntityNeedsToChangePositionOnBoard(self.indexI, self.indexJ, self.moveDirection, self)
+        if not (self.locked) then
+            self.moveCoords()
+        else
+            local initialDirection = self.moveDirection
+            while (true) do
+                local nextDirectionValue = self.nextDirection()
+                if nextDirectionValue == initialDirection then
+                    break
+                end
+                self.moveDirection = nextDirectionValue
+                self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
+                if not self.locked then
+                    break
+                end
+            end
+        end
     end
 
 	return self

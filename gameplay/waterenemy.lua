@@ -13,81 +13,23 @@ function WaterEnemy()
         self.drawable = display.newCircle( initial_position_x, intial_position_y, size/2.0 )
         self.drawable:setFillColor(ENEMY_COLOR_FILL_R,ENEMY_COLOR_FILL_G,ENEMY_COLOR_FILL_B,1.0)
 	    self.moveDirection = MOVE_DIRECTION_DOWN_LEFT
+        self.directions = {
+            MOVE_DIRECTION_DOWN_LEFT,
+            MOVE_DIRECTION_UP_RIGHT,
+            MOVE_DIRECTION_DOWN_RIGHT,
+            MOVE_DIRECTION_UP_LEFT
+        }
     end
 
-	function self.onMove ( )
-        self.background.onEntityNeedsToChangePositionOnBoard(self.indexI, self.indexJ, self.moveDirection, self)
-        if not (self.locked) then
-            self.moveCoords()
-        else
-            if self.moveDirection == MOVE_DIRECTION_UP_RIGHT then
-                self.moveDirection = self.nextAdditionalDirection()
-                self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextAdditionalDirection()
-                    self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextAdditionalDirection()
-                        self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
-                end
-            elseif self.moveDirection == MOVE_DIRECTION_DOWN_RIGHT then
-                self.moveDirection = self.nextAdditionalDirection()
-                self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextAdditionalDirection()
-                    self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextAdditionalDirection()
-                        self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
-                end            
-            elseif self.moveDirection == MOVE_DIRECTION_DOWN_LEFT then
-                self.moveDirection = self.nextAdditionalDirection()
-                self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextAdditionalDirection()
-                    self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextAdditionalDirection()
-                        self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
-                end              
-            elseif self.moveDirection == MOVE_DIRECTION_UP_LEFT then
-                self.moveDirection = self.nextAdditionalDirection()
-                self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextAdditionalDirection()
-                    self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextAdditionalDirection()
-                        self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    end
-                end
-            else
-                self.moveDirection = MOVE_DIRECTION_UP_RIGHT
-                self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if self.locked then
-                    self.moveDirection = self.nextAdditionalDirection()
-                    self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                    if self.locked then
-                        self.moveDirection = self.nextAdditionalDirection()
-                        self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                        if self.locked then
-                            self.moveDirection = self.nextAdditionalDirection()
-                            self.background.tryToUnlockWaterEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                        end
-                    end
-                end
-            end            
-        end      
+	function self.onMove()
+        self.onMoveBase()         
 	end
 
-    function self.cellType ( )
+    function self.cellType()
         return CELL_STATE_WATER_ENEMY
     end
 
-    function self.destroyObject ()
+    function self.destroyObject()
 
     end
 

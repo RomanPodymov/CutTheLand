@@ -13,26 +13,16 @@ function Enemy()
         self.drawable = display.newCircle(initial_position_x, intial_position_y, size/2.0)
         self.drawable:setFillColor(ENEMY_COLOR_FILL_R, ENEMY_COLOR_FILL_G, ENEMY_COLOR_FILL_B, 1.0)
         self.moveDirection = MOVE_DIRECTION_DOWN
+        self.directions = {
+            MOVE_DIRECTION_LEFT,
+            MOVE_DIRECTION_UP,
+            MOVE_DIRECTION_RIGHT,
+            MOVE_DIRECTION_DOWN
+        }
 	end
 
-	function self.onMove ( )
-        self.background.onEntityNeedsToChangePositionOnBoard(self.indexI, self.indexJ, self.moveDirection, self)
-        if not (self.locked) then
-            self.moveCoords()
-        else
-            local initialDirection = self.moveDirection
-            while (true) do
-                local nextDirectionValue = self.nextDirection()
-                if nextDirectionValue == initialDirection then
-                    break
-                end
-                self.moveDirection = nextDirectionValue
-                self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
-                if not self.locked then
-                    break
-                end
-            end
-        end
+	function self.onMove()
+        self.onMoveBase()
         self.makeDecision()
 	end
 
