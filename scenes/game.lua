@@ -82,7 +82,7 @@ function scene:create(event)
                                  display.contentHeight - 40)
     backgroundScene.create(sceneGroup, updateEntitiesTimerInterval, selectedLevel)
 
-    updateEntitiesTimer = timer.performWithDelay( updateEntitiesTimerInterval, updateEntities, -1)
+    updateEntitiesTimer = timer.performWithDelay(updateEntitiesTimerInterval, updateEntities, -1)
     currentScore = 0
     currentScoreDisplay.text = string.format("%00d%%", currentScore)
     currentPlayers = 3
@@ -95,13 +95,13 @@ function handleSwipe(event)
     if (event.phase == "moved") then
         local dX = event.x - event.xStart
         local dY = event.y - event.yStart
-        if ( dX > 10 ) then
+        if (dX > 10) then
             backgroundScene.onSwipeRight()
-        elseif ( dX < -10 ) then
+        elseif (dX < -10) then
             backgroundScene.onSwipeLeft()
-        elseif ( dY < -10) then
+        elseif (dY < -10) then
             backgroundScene.onSwipeTop()
-        elseif ( dY > 10) then
+        elseif (dY > 10) then
             backgroundScene.onSwipeBottom()
         end
     end
@@ -117,7 +117,7 @@ function scene:show(event)
     end
 end
 
-function onProgressChanged (event)
+function onProgressChanged(event)
     currentScore = event.progress
     currentScoreDisplay.text = string.format("%00d%%", currentScore)
     if (currentScore > completeProgress) then

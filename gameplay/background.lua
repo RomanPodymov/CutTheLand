@@ -312,54 +312,37 @@ function Background(_centerX, _centerY, _width, _height)
     end
 
     function self.tryToUnlockPlayer(indexI, indexJ, direction, ent)
-        local items = {
+        self.tryToUnlock(indexI, indexJ, direction, ent, {
             {direction = MOVE_DIRECTION_LEFT, handler = self.canMoveLeft},
             {direction = MOVE_DIRECTION_RIGHT, handler = self.canMoveRight},
             {direction = MOVE_DIRECTION_DOWN, handler = self.canMoveDown},
             {direction = MOVE_DIRECTION_UP, handler = self.canMoveUp}
-        }
-        for key, item in pairs(items) do
-            if direction == item.direction then
-                if not(item.handler(indexI, indexJ) == MOVE_KIND_NONE) then
-                    ent.locked = false
-                else
-                    ent.locked = true
-                end
-                break
-            end
-        end
+        }, MOVE_KIND_NONE, MOVE_KIND_NONE)
     end
 
     function self.tryToUnlockEnemy(indexI, indexJ, direction, ent)
-        local items = {
+        self.tryToUnlock(indexI, indexJ, direction, ent, {
             {direction = MOVE_DIRECTION_LEFT, handler = self.canMoveLeft},
             {direction = MOVE_DIRECTION_RIGHT, handler = self.canMoveRight},
             {direction = MOVE_DIRECTION_DOWN, handler = self.canMoveDown},
             {direction = MOVE_DIRECTION_UP, handler = self.canMoveUp}
-        }
-        for key, item in pairs(items) do
-            if direction == item.direction then
-                local canMoveVar = item.handler(indexI, indexJ)
-                if not(canMoveVar == MOVE_KIND_NONE or canMoveVar == MOVE_KIND_CUT) then
-                    ent.locked = false
-                else
-                    ent.locked = true
-                end
-                break
-            end
-        end
+        }, MOVE_KIND_NONE, MOVE_KIND_CUT)
     end
 
     function self.tryToUnlockWaterEnemy(indexI, indexJ, direction, ent)
-        local items = {
+        self.tryToUnlock(indexI, indexJ, direction, ent, {
             {direction = MOVE_DIRECTION_UP_RIGHT, handler = self.canMoveUpRight},
             {direction = MOVE_DIRECTION_DOWN_RIGHT, handler = self.canMoveDownRight},
             {direction = MOVE_DIRECTION_DOWN_LEFT, handler = self.canMoveDownLeft},
             {direction = MOVE_DIRECTION_UP_LEFT, handler = self.canMoveUpLeft}
-        }
+        }, MOVE_KIND_NONE, MOVE_KIND_NONE)
+    end
+
+    function self.tryToUnlock(indexI, indexJ, direction, ent, items, handlerResult1, handlerResult2)
         for key, item in pairs(items) do
             if direction == item.direction then
-                if not(item.handler(indexI, indexJ) == MOVE_KIND_NONE) then
+                local canMoveVar = item.handler(indexI, indexJ)
+                if not(canMoveVar == handlerResult1 or canMoveVar == handlerResult2) then
                     ent.locked = false
                 else
                     ent.locked = true
