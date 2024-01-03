@@ -415,6 +415,24 @@ function Background(_centerX, _centerY, _width, _height)
                       end)
     end
 
+    function drawEmpty(rect, newLine, kInner, isDeepCreation)
+        rect:setFillColor(BACKGROUND_COLOR_EMPTY_R, BACKGROUND_COLOR_EMPTY_G, BACKGROUND_COLOR_EMPTY_B)
+        if (isDeepCreation == true) then
+            newLine[kInner] = CELL_STATE_EMPTY
+        end
+    end
+
+    function drawPlayer(rect, newLine, k, kInner, isDeepCreation, sceneGroup, eventsTimeInterval, stageNumber, itemsToInsertAfter)
+        rect:setFillColor(BACKGROUND_COLOR_EMPTY_R, BACKGROUND_COLOR_EMPTY_G, BACKGROUND_COLOR_EMPTY_B)
+        local p = self.createPlayer(k, kInner, sceneGroup, eventsTimeInterval, stageNumber)
+        table.insert(itemsToInsertAfter, p.drawable)
+        if (isDeepCreation == true) then
+            newLine[kInner] = CELL_STATE_PLAYER
+        else
+            field[k][kInner] = CELL_STATE_PLAYER
+        end
+    end
+
     function self.createScene(sceneGroup, eventsTimeInterval, isDeepCreation, stageNumber)
         handleEnts = true
         local itemsToInsertAfter = {}
@@ -436,24 +454,14 @@ function Background(_centerX, _centerY, _width, _height)
                                         function(kInner, vInner)
                                         	local rect = display.newRect(startX + part_size/2.0, startY + part_size/2.0, part_size , part_size)
                                             if (vInner == CELL_STATE_EMPTY) then
-                                                rect:setFillColor( BACKGROUND_COLOR_EMPTY_R, BACKGROUND_COLOR_EMPTY_G, BACKGROUND_COLOR_EMPTY_B )
-                                                if (isDeepCreation == true) then
-                                                    newLine[kInner] = CELL_STATE_EMPTY
-                                                end
+                                                drawEmpty(rect, newLine, kInner, isDeepCreation)
                                             elseif (vInner == CELL_STATE_FILLED) then
                                                 rect:setFillColor( BACKGROUND_COLOR_FILL_R, BACKGROUND_COLOR_FILL_G, BACKGROUND_COLOR_FILL_B )
                                                 if (isDeepCreation == true) then
                                                     newLine[kInner] = CELL_STATE_FILLED
                                             	end
                                             elseif (vInner == CELL_STATE_PLAYER) then
-                                                rect:setFillColor( BACKGROUND_COLOR_EMPTY_R, BACKGROUND_COLOR_EMPTY_G, BACKGROUND_COLOR_EMPTY_B )
-                                                local p = self.createPlayer(k, kInner, sceneGroup, eventsTimeInterval, stageNumber)
-                                                table.insert(itemsToInsertAfter, p.drawable)
-                                                if (isDeepCreation == true) then
-                                                	newLine[kInner] = CELL_STATE_PLAYER
-                                                else
-                                                	field[k][kInner] = CELL_STATE_PLAYER
-                                                end
+                                                drawPlayer(rect, newLine, k, kInner, isDeepCreation, sceneGroup, eventsTimeInterval, stageNumber, itemsToInsertAfter)
                                             elseif (vInner == CELL_STATE_ENEMY) then
                                                 rect:setFillColor( BACKGROUND_COLOR_EMPTY_R, BACKGROUND_COLOR_EMPTY_G, BACKGROUND_COLOR_EMPTY_B )
                                                 local e = self.createEnemy(k, kInner, sceneGroup, eventsTimeInterval, stageNumber)
