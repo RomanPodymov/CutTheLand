@@ -14,15 +14,15 @@ function WaterEnemy()
         self.drawable:setFillColor(ENEMY_COLOR_FILL_R,ENEMY_COLOR_FILL_G,ENEMY_COLOR_FILL_B,1.0)
 	    self.moveDirection = MOVE_DIRECTION_DOWN_LEFT
         self.directions = {
-            MOVE_DIRECTION_DOWN_LEFT,
+            MOVE_DIRECTION_UP_LEFT,
             MOVE_DIRECTION_UP_RIGHT,
             MOVE_DIRECTION_DOWN_RIGHT,
-            MOVE_DIRECTION_UP_LEFT
+            MOVE_DIRECTION_DOWN_LEFT
         }
     end
 
 	function self.onMove()
-        self.onMoveBase()         
+        self.onMoveBase(self.background.tryToUnlockWaterEnemy)         
 	end
 
     function self.cellType()

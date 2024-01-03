@@ -88,31 +88,31 @@ function Background(_centerX, _centerY, _width, _height)
         print(result)
     end
 
-    function self.onSwipeLeft( )
+    function self.onSwipeLeft()
         for i = 1, #enteties do
             enteties[i].onSwipeLeft()
         end
     end
 
-    function self.onSwipeRight( )
+    function self.onSwipeRight()
         for i = 1, #enteties do
             enteties[i].onSwipeRight()
         end
     end
 
-    function self.onSwipeTop( )
+    function self.onSwipeTop()
 		for i = 1, #enteties do
             enteties[i].onSwipeTop()
         end
     end
 
-    function self.onSwipeBottom( )
+    function self.onSwipeBottom()
 		for i = 1, #enteties do
             enteties[i].onSwipeBottom()
         end
     end
 
-	function self.onMove () 
+	function self.onMove() 
         for i = 1, #enteties do
             enteties[i].onMove()
         end
@@ -206,7 +206,7 @@ function Background(_centerX, _centerY, _width, _height)
         return (result/(#field * #(field[1]) - (#field * 2) - (#(field[1]) * 2) + 2)) * 100
     end
 
-    function self.onMoveBase(indexI,indexJ,direction,ent,indexIchange,indexJchange,canMoveFunction)
+    function self.onMoveBase(indexI, indexJ, direction, ent, indexIchange, indexJchange, canMoveFunction)
         if (not handleEnts) then
             return
         end
@@ -294,7 +294,7 @@ function Background(_centerX, _centerY, _width, _height)
         self.onMoveBase(indexI, indexJ, direction, ent, -1, -1, self.canMoveUpLeft)
     end
 
-    function self.onEntityNeedsToChangePositionOnBoard (indexI,indexJ,direction,ent)
+    function self.onEntityNeedsToChangePositionOnBoard(indexI, indexJ, direction, ent)
         local handlers = {
             [MOVE_DIRECTION_LEFT] = self.onMoveLeft,
             [MOVE_DIRECTION_RIGHT] = self.onMoveRight,
@@ -350,7 +350,7 @@ function Background(_centerX, _centerY, _width, _height)
         end
     end
 
-    function self.tryToUnlockWaterEnemy (indexI,indexJ,direction,ent)
+    function self.tryToUnlockWaterEnemy(indexI, indexJ, direction, ent)
         local items = {
             {direction = MOVE_DIRECTION_UP_RIGHT, handler = self.canMoveUpRight},
             {direction = MOVE_DIRECTION_DOWN_RIGHT, handler = self.canMoveDownRight},
@@ -369,7 +369,7 @@ function Background(_centerX, _centerY, _width, _height)
         end
     end
 
-    function self.destroyObject ()
+    function self.destroyObject()
         for i = 1, #enteties do
             enteties[i].destroyObject()
         end  

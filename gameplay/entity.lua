@@ -77,7 +77,7 @@ function Entity()
                 if nextIndex == table.getn(self.directions) + 2 then
                     nextIndex = 1
                 end 
-                return self.directions[index]
+                return self.directions[nextIndex]
             end
         end
     end
@@ -126,7 +126,7 @@ function Entity()
 
     end
 
-    function self.onMoveBase()
+    function self.onMoveBase(unlockFunction)
         self.background.onEntityNeedsToChangePositionOnBoard(self.indexI, self.indexJ, self.moveDirection, self)
         if not (self.locked) then
             self.moveCoords()
@@ -138,7 +138,8 @@ function Entity()
                     break
                 end
                 self.moveDirection = nextDirectionValue
-                self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
+                unlockFunction(self.indexI, self.indexJ, self.moveDirection, self)
+                -- self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if not self.locked then
                     break
                 end

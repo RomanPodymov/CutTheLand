@@ -22,7 +22,7 @@ function Enemy()
 	end
 
 	function self.onMove()
-        self.onMoveBase()
+        self.onMoveBase(self.background.tryToUnlockEnemy)
         self.makeDecision()
 	end
 
