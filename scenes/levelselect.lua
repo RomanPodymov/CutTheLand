@@ -27,11 +27,8 @@ end
 
 function scene:create(event)
     local sceneGroup = self.view
-        
-    local background = utility.createBackground()
-    background.x = display.contentCenterX
-    background.y = display.contentCenterY
-    sceneGroup:insert(background)
+ 
+    sceneGroup:insert(utility.createBackground())
 
     local selectLevelText = display.newText(GBCLanguageCabinet.getText("SELECT_LEVEL", utility.getCurrentLanguage()), 125, 32, native.systemFontBold, 32)
     selectLevelText:setFillColor(0)

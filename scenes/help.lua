@@ -14,10 +14,8 @@ end
 
 function scene:create(event)
     local sceneGroup = self.view
-        
+
     local background = utility.createBackground()
-    background.x = display.contentCenterX
-    background.y = display.contentCenterY
     sceneGroup:insert(background)
 
     local title = display.newText("Cut the Land", 125, 32, native.systemFontBold, 32)

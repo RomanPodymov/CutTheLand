@@ -43,8 +43,6 @@ function scene:create(event)
     selectedLevel = event.params.selectedLevel
 
     local backgroundView = utility.createBackground()
-    backgroundView.x = display.contentCenterX
-    backgroundView.y = display.contentCenterY
     backgroundView:addEventListener("touch", handleSwipe)
     sceneGroup:insert(backgroundView)
 

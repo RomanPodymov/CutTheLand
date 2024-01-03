@@ -16,12 +16,8 @@ end
 
 function scene:create(event)
     local sceneGroup = self.view
-        
-    local background = utility.createBackground()
-    background.x = display.contentCenterX
-    background.y = display.contentCenterY
-    background:setFillColor(1)
-    sceneGroup:insert(background)
+
+    sceneGroup:insert(utility.createBackground())
 
     local gameOverText = display.newText(GBCLanguageCabinet.getText("GAME_OVER", utility.getCurrentLanguage()), 0, 0, native.systemFontBold, 32)
     gameOverText:setFillColor(0)

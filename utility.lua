@@ -24,6 +24,8 @@ end
 
 function M.createBackground()
     local background = display.newRect(0, 0, display.contentWidth, display.contentHeight)
+    background.x = display.contentCenterX
+    background.y = display.contentCenterY
     background:setFillColor(BACKGROUND_COLOR_FILL_R, BACKGROUND_COLOR_FILL_G, BACKGROUND_COLOR_FILL_B)
     return background
 end
