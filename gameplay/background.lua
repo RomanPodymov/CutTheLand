@@ -433,6 +433,28 @@ function Background(_centerX, _centerY, _width, _height)
         end
     end
 
+    function drawEnemy(rect, newLine, k, kInner, isDeepCreation, sceneGroup, eventsTimeInterval, stageNumber, itemsToInsertAfter)
+        rect:setFillColor(BACKGROUND_COLOR_EMPTY_R, BACKGROUND_COLOR_EMPTY_G, BACKGROUND_COLOR_EMPTY_B)
+        local e = self.createEnemy(k, kInner, sceneGroup, eventsTimeInterval, stageNumber)
+        table.insert(itemsToInsertAfter, e.drawable)
+        if (isDeepCreation == true) then
+            newLine[kInner] = CELL_STATE_ENEMY
+        else
+            field[k][kInner] = CELL_STATE_ENEMY
+        end
+    end
+
+    function drawWaterEnemy(rect, newLine, k, kInner, isDeepCreation, sceneGroup, eventsTimeInterval, stageNumber, itemsToInsertAfter)
+        rect:setFillColor(BACKGROUND_COLOR_FILL_R, BACKGROUND_COLOR_FILL_G, BACKGROUND_COLOR_FILL_B)
+        local e = self.createWaterEnemy(k, kInner, sceneGroup, eventsTimeInterval, stageNumber)
+        table.insert(itemsToInsertAfter, e.drawable)
+        if (isDeepCreation == true) then
+            newLine[kInner] = CELL_STATE_WATER_ENEMY
+        else
+            field[k][kInner] = CELL_STATE_WATER_ENEMY
+        end
+    end
+
     function self.createScene(sceneGroup, eventsTimeInterval, isDeepCreation, stageNumber)
         handleEnts = true
         local itemsToInsertAfter = {}
@@ -463,23 +485,9 @@ function Background(_centerX, _centerY, _width, _height)
                                             elseif (vInner == CELL_STATE_PLAYER) then
                                                 drawPlayer(rect, newLine, k, kInner, isDeepCreation, sceneGroup, eventsTimeInterval, stageNumber, itemsToInsertAfter)
                                             elseif (vInner == CELL_STATE_ENEMY) then
-                                                rect:setFillColor( BACKGROUND_COLOR_EMPTY_R, BACKGROUND_COLOR_EMPTY_G, BACKGROUND_COLOR_EMPTY_B )
-                                                local e = self.createEnemy(k, kInner, sceneGroup, eventsTimeInterval, stageNumber)
-                                                table.insert(itemsToInsertAfter, e.drawable)
-                                                if (isDeepCreation == true) then
-                                                	newLine[kInner] = CELL_STATE_ENEMY
-                                                else
-                                                	field[k][kInner] = CELL_STATE_ENEMY
-                                            	end
+                                                drawEnemy(rect, newLine, k, kInner, isDeepCreation, sceneGroup, eventsTimeInterval, stageNumber, itemsToInsertAfter)
                                             elseif (vInner == CELL_STATE_WATER_ENEMY) then
-                                                rect:setFillColor( BACKGROUND_COLOR_FILL_R, BACKGROUND_COLOR_FILL_G, BACKGROUND_COLOR_FILL_B )
-                                                local e = self.createWaterEnemy(k, kInner, sceneGroup, eventsTimeInterval, stageNumber)
-                                                table.insert(itemsToInsertAfter, e.drawable)
-                                                if (isDeepCreation == true) then
-                                                	newLine[kInner] = CELL_STATE_WATER_ENEMY
-                                                else
-                                                	field[k][kInner] = CELL_STATE_WATER_ENEMY
-                                            	end
+                                                drawWaterEnemy(rect, newLine, k, kInner, isDeepCreation, sceneGroup, eventsTimeInterval, stageNumber, itemsToInsertAfter)
                                             end
                                             if (not (field[k] == nil)) then
                                             	if (field[k][kInner] == CELL_STATE_EMPTY) then
