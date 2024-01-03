@@ -7,6 +7,10 @@ M = {}
 M.BUTTON_WIDTH = display.contentWidth/2.8
 M.BUTTON_HEIGHT = M.BUTTON_WIDTH/3.1
 
+local BACKGROUND_COLOR_FILL_R = 0.8
+local BACKGROUND_COLOR_FILL_G = 0.8
+local BACKGROUND_COLOR_FILL_B = 0.8
+
 function M.getCurrentLanguage()
     local allLangs = GBCLanguageCabinet.getLanguages()
     local currentLang = GBCLanguageCabinet.getDeviceLanguage()
@@ -20,7 +24,7 @@ end
 
 function M.createBackground()
     local background = display.newRect(0, 0, display.contentWidth, display.contentHeight)
-    background:setFillColor(0.8, 0.8, 0.8)
+    background:setFillColor(BACKGROUND_COLOR_FILL_R, BACKGROUND_COLOR_FILL_G, BACKGROUND_COLOR_FILL_B)
     return background
 end
 
@@ -35,7 +39,7 @@ function M.createButton(buttonId, buttonTextKey, handleButtonEvent)
         width = M.BUTTON_WIDTH,
         height = M.BUTTON_HEIGHT,
         font = native.systemFont,
-        labelColor = {default={ 1, 1, 1 }, over={0, 0, 0, 0.0}},
+        labelColor = {default = {1, 1, 1}, over = {0, 0, 0, 0.0}},
         fontSize = M.BUTTON_HEIGHT/2.5,
         cornerRadius = 12,
         fillColor = {default = M.buttonFillColorDefault(), over = M.buttonFillColorOver()},
