@@ -7,13 +7,13 @@ local scene = composer.newScene()
  
 local function handlePlayButtonEvent(event)
     if (event.phase == "ended") then
-        utility.goToScene("levelselect")
+        utility.goToScene("scenes.levelselect")
     end
 end
 
 local function handleHelpButtonEvent(event)
     if (event.phase == "ended") then
-        utility.goToScene("help")
+        utility.goToScene("scenes.help")
     end
 end
 

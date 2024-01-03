@@ -11,7 +11,7 @@ local nextLevel
 
 local function handleButtonEvent(event)
     if (event.phase == "ended") then
-        utility.goToScene("game", {selectedLevel = nextLevel})
+        utility.goToScene("scenes.game", {selectedLevel = nextLevel})
     end
 end
 

@@ -14,14 +14,14 @@ local levelButtonVerticSpace = 10
 
 local function handleButtonEvent(event)
     if (event.phase == "ended") then
-        utility.goToScene("menu")
+        utility.goToScene("scenes.menu")
     end
 end
 
 local function handleLevelSelect( event )
     if (event.phase == "ended") then
     	local buttonId = event.target.id
-        utility.goToScene("game", {selectedLevel = buttonId})
+        utility.goToScene("scenes.game", {selectedLevel = buttonId})
     end
 end
 

@@ -80,7 +80,7 @@ end
 
 local function systemEvents(event)
     if event.type == "applicationStart" then
-        utility.goToScene("menu")
+        utility.goToScene("scenes.menu")
     end
     return true
 end

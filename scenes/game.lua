@@ -21,17 +21,17 @@ local selectedLevel
 
 local function onBackBtnPressed(event)
     if event.phase == "ended" then
-        utility.goToScene("levelSelect")
+        utility.goToScene("scenes.levelSelect")
     end
     return true
 end
 
 local function handleWin()
-    utility.goToScene("nextLevel", {selectedLevelKey = selectedLevel})
+    utility.goToScene("scenes.nextLevel", {selectedLevelKey = selectedLevel})
 end
 
 local function handleLoss()
-    utility.goToScene("gameover")
+    utility.goToScene("scenes.gameover")
 end
 
 local function updateEntities( )

@@ -7,7 +7,7 @@ local scene = composer.newScene()
 
 local function handleButtonEvent(event)
     if (event.phase == "ended") then
-        utility.goToScene("menu")
+        utility.goToScene("scenes.menu")
     end
     return true
 end
