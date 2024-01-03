@@ -88,12 +88,12 @@ function M.getUserLevel()
 end
 
 function M.removeAllScenes()
-    composer.removeScene("menu")
-    composer.removeScene("levelselect")
-    composer.removeScene("help")
-    composer.removeScene("game")
-    composer.removeScene("gameover")
-    composer.removeScene("nextlevel")
+    -- composer.removeScene("menu")
+    -- composer.removeScene("levelselect")
+    -- composer.removeScene("help")
+    -- composer.removeScene("game")
+    -- composer.removeScene("gameover")
+    -- composer.removeScene("nextlevel")
 end
 
 function M.goToScene(sceneName, additionalParams)
