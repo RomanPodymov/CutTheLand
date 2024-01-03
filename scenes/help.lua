@@ -12,7 +12,7 @@ local function handleButtonEvent(event)
     return true
 end
 
-function scene:create( event )
+function scene:create(event)
     local sceneGroup = self.view
         
     local background = utility.createBackground()

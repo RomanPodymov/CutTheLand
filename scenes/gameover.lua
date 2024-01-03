@@ -7,14 +7,14 @@ local utility = require("utility")
 local scene = composer.newScene()
 local newHighScore = false
 
-local function handleButtonEvent( event )
+local function handleButtonEvent(event)
     if (event.phase == "ended") then
         utility.goToScene("scenes.menu")
     end
     return true
 end
 
-function scene:create( event )
+function scene:create(event)
     local sceneGroup = self.view
         
     local background = utility.createBackground()

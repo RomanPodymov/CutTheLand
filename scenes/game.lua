@@ -34,7 +34,7 @@ local function handleLoss()
     utility.goToScene("scenes.gameover")
 end
 
-local function updateEntities( )
+local function updateEntities()
     backgroundScene.onMove()
 end
 
@@ -91,7 +91,7 @@ function scene:create(event)
     Runtime:addEventListener("playerWasContactedWithEnemy", onPlayerWasContactedWithEnemy)
 end
 
-function handleSwipe( event )
+function handleSwipe(event)
     if (event.phase == "moved") then
         local dX = event.x - event.xStart
         local dY = event.y - event.yStart
@@ -108,7 +108,7 @@ function handleSwipe( event )
     return true
 end
 
-function scene:show( event )
+function scene:show(event)
     local sceneGroup = self.view
     if event.phase == "did" then
         transition.to(levelText, {time = 500, alpha = 0})
@@ -127,13 +127,13 @@ end
 
 function onPlayerWasContactedWithEnemy(event)
     currentPlayers = currentPlayers - 1
-    currentPlayersDisplay.text = string.format("%d", currentPlayers )
+    currentPlayersDisplay.text = string.format("%d", currentPlayers)
     stopEvents()
     if (currentPlayers == 0) then
         handleLoss()
     else
         backgroundScene.restartLevel(selectedLevel)
-        timer.cancel( updateEntitiesTimer )
+        timer.cancel(updateEntitiesTimer)
         updateEntitiesTimer = timer.performWithDelay(updateEntitiesTimerInterval, updateEntities, -1)
     end
 end
@@ -143,7 +143,7 @@ function stopEvents()
     backgroundScene.destroyObject()
 end
 
-function scene:destroy( event )
+function scene:destroy(event)
     Runtime:removeEventListener("progressChanged", onProgressChanged)
     Runtime:removeEventListener("playerWasContactedWithEnemy", onPlayerWasContactedWithEnemy)
     stopEvents()

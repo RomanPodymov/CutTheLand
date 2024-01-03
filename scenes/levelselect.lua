@@ -18,14 +18,14 @@ local function handleButtonEvent(event)
     end
 end
 
-local function handleLevelSelect( event )
+local function handleLevelSelect(event)
     if (event.phase == "ended") then
     	local buttonId = event.target.id
         utility.goToScene("scenes.game", {selectedLevel = buttonId})
     end
 end
 
-function scene:create( event )
+function scene:create(event)
     local sceneGroup = self.view
         
     local background = utility.createBackground()
