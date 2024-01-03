@@ -82,23 +82,23 @@ function Entity()
         end
     end
 
-	function self.onSwipeLeft( )
+	function self.onSwipeLeft()
 
 	end
 
-	function self.onSwipeRight( )
+	function self.onSwipeRight()
 
 	end
 
-	function self.onSwipeTop( )
+	function self.onSwipeTop()
 
 	end
 
-	function self.onSwipeBottom( )
+	function self.onSwipeBottom()
 
 	end
 
-	function self.onMove ( ) 
+	function self.onMove() 
 		
 	end
 
@@ -106,11 +106,11 @@ function Entity()
         
     end
 
-    function self.cellType ( )
+    function self.cellType()
 
     end
 
-    function self.destroyObject ()
+    function self.destroyObject()
         
     end
 
@@ -139,7 +139,6 @@ function Entity()
                 end
                 self.moveDirection = nextDirectionValue
                 unlockFunction(self.indexI, self.indexJ, self.moveDirection, self)
-                -- self.background.tryToUnlockEnemy(self.indexI, self.indexJ, self.moveDirection, self)
                 if not self.locked then
                     break
                 end

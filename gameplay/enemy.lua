@@ -26,7 +26,7 @@ function Enemy()
         self.makeDecision()
 	end
 
-    function self.findDistance (fromI, fromJ, toI, toJ, currentDistance, currentDirection, copyField, watchedCellsArray)
+    function self.findDistance(fromI, fromJ, toI, toJ, currentDistance, currentDirection, copyField, watchedCellsArray)
         if (self.watchedVertexCount % 500 == 0) then
             coroutine.yield()
         end
@@ -110,7 +110,7 @@ function Enemy()
         return minimalDistance, resultDirection
     end
 
-    function self.makeDecisionRoutine ()
+    function self.makeDecisionRoutine()
         self.watchedVertexCount = 0
         local fieldCopy = self.background.deepcopyField()
         local playerI = -1
@@ -133,11 +133,11 @@ function Enemy()
         coroutine.resume(self.co)
     end
 
-    function self.cellType ( )
+    function self.cellType()
         return CELL_STATE_ENEMY
     end
 
-    function self.destroyObject ()
+    function self.destroyObject()
 
     end
 

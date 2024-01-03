@@ -16,7 +16,7 @@ local currentScoreDisplayLabel
 local levelText          
 local updateEntitiesTimer    
 local updateEntitiesTimerInterval = 1000
-local completeProgress = 1
+local completeProgress = 30
 local selectedLevel
 
 local function onBackBtnPressed(event)
