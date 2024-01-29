@@ -42,12 +42,12 @@ local function setupTranslations()
     })   
     GBCLanguageCabinet.addText("HELP_TEXT", {
         {"en", "You need to cut as much rectangles as you can. " ..
-               "There are 2 kinds of rectangles - ground(black) and water(blue). " ..
+               "There are 2 kinds of rectangles - ground (black) and water (blue). " ..
                "Your player is a yellow rectangle, ground enemies are orange and water enemies are green." ..
                "Swipe screen to move your player. " ..
                "Avoid enemies, you have only 3 attempts."},
-        {"ru", "Суть игры заключается в том, чтобы отсечь как можно больше территории, представленной чёрными(суша) и синими(вода) элементами. " ..
-               "Вы играете за жёлтого персонажи, а ваши враги - оранжевые(на суше) и зелёные(в воде) прямоугольникии. " ..
+        {"ru", "Суть игры заключается в том, чтобы отсечь как можно больше территории, представленной чёрными (суша) и синими (вода) элементами. " ..
+               "Вы играете за жёлтого персонажи, а ваши враги - оранжевые (на суше) и зелёные (в воде) прямоугольникии. " ..
                "Для того чтобы передвинуть Вашего игрока проведите пальцем по экрану. " ..
                "Избегайте соприкосновений с Вашими врагами! " .. 
                "Всего у Вас будет 3 попытки на каждом уровне."}
