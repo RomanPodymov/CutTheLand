@@ -1,3 +1,11 @@
+--
+--  enemy.lua
+--  Cut The Land
+--
+--  Created by Roman Podymov on 07/07/2024.
+--  Copyright © 2024 Cut The Land. All rights reserved.
+--
+
 local display = require("display")
 local entity = require("gameplay.entity")
 
@@ -8,8 +16,8 @@ local ENEMY_COLOR_FILL_B = 0x00/255.0
 function Enemy()
     local self = Entity()
 
-	function self.createEntity(initial_position_x, intial_position_y, initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
-		self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+    function self.createEntity(initial_position_x, intial_position_y, initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+        self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
         self.drawable = display.newCircle(initial_position_x, intial_position_y, size/2.0)
         self.drawable:setFillColor(ENEMY_COLOR_FILL_R, ENEMY_COLOR_FILL_G, ENEMY_COLOR_FILL_B, 1.0)
         self.moveDirection = MOVE_DIRECTION_DOWN
@@ -19,12 +27,12 @@ function Enemy()
             MOVE_DIRECTION_RIGHT,
             MOVE_DIRECTION_DOWN
         }
-	end
+    end
 
-	function self.onMove()
+    function self.onMove()
         self.onMoveBase(self.background.tryToUnlockEnemy)
         self.makeDecision()
-	end
+    end
 
     function self.findDistance(fromI, fromJ, toI, toJ, currentDistance, currentDirection, copyField, watchedCellsArray)
         if (self.watchedVertexCount % 500 == 0) then
@@ -60,10 +68,10 @@ function Enemy()
                           end
                       end)
         if isLeftStepWasAlready == false then
-        	distanceToGoLeft, resultDirection = self.findDistance (fromI, fromJ - 1, toI, toJ, currentDistance + 1, MOVE_DIRECTION_LEFT, copyField, newWatchedCellsArray)
+            distanceToGoLeft, resultDirection = self.findDistance (fromI, fromJ - 1, toI, toJ, currentDistance + 1, MOVE_DIRECTION_LEFT, copyField, newWatchedCellsArray)
         end
 
-		local isRightStepWasAlready = false
+        local isRightStepWasAlready = false
         table.foreach(watchedCellsArray,
                       function(k,v)
                           if (v[1] == fromI and v[2] == fromJ + 1) then
@@ -71,10 +79,10 @@ function Enemy()
                           end
                       end)
         if isRightStepWasAlready == false then
-        	distanceToGoRight, resultDirection = self.findDistance (fromI, fromJ + 1, toI, toJ, currentDistance + 1, MOVE_DIRECTION_RIGHT, copyField, newWatchedCellsArray)
+            distanceToGoRight, resultDirection = self.findDistance (fromI, fromJ + 1, toI, toJ, currentDistance + 1, MOVE_DIRECTION_RIGHT, copyField, newWatchedCellsArray)
         end      
-        
-		local isDownStepWasAlready = false
+
+        local isDownStepWasAlready = false
         table.foreach(watchedCellsArray,
                       function(k,v)
                           if (v[1] == fromI + 1 and v[2] == fromJ) then
@@ -82,10 +90,10 @@ function Enemy()
                           end
                       end)
         if isDownStepWasAlready == false then
-        	distanceToGoDown, resultDirection = self.findDistance (fromI + 1, fromJ, toI, toJ, currentDistance + 1, MOVE_DIRECTION_DOWN, copyField, newWatchedCellsArray)
+            distanceToGoDown, resultDirection = self.findDistance (fromI + 1, fromJ, toI, toJ, currentDistance + 1, MOVE_DIRECTION_DOWN, copyField, newWatchedCellsArray)
         end  
 
-		local isUpStepWasAlready = false
+        local isUpStepWasAlready = false
         table.foreach(watchedCellsArray,
                       function(k,v)
                           if (v[1] == fromI - 1 and v[2] == fromJ) then
@@ -93,7 +101,7 @@ function Enemy()
                           end
                       end)
         if isUpStepWasAlready == false then
-        	distanceToGoUp, resultDirection = self.findDistance (fromI - 1, fromJ, toI, toJ, currentDistance + 1, MOVE_DIRECTION_UP, copyField, newWatchedCellsArray)
+            distanceToGoUp, resultDirection = self.findDistance (fromI - 1, fromJ, toI, toJ, currentDistance + 1, MOVE_DIRECTION_UP, copyField, newWatchedCellsArray)
         end          
 
         local minimalDistance = 100000
@@ -105,7 +113,7 @@ function Enemy()
             end
         end
         if (minimalDistance == 100000) then
-        	minimalDistance = -1
+            minimalDistance = -1
         end
         return minimalDistance, resultDirection
     end
@@ -153,5 +161,5 @@ function Enemy()
         return true
     end
 
-	return self
+    return self
 end

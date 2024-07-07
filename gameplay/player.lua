@@ -1,3 +1,11 @@
+--
+--  player.lua
+--  Cut The Land
+--
+--  Created by Roman Podymov on 07/07/2024.
+--  Copyright © 2024 Cut The Land. All rights reserved.
+--
+
 local display = require("display")
 local entity = require("gameplay.entity")
 

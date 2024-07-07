@@ -1,3 +1,11 @@
+--
+--  stages.lua
+--  Cut The Land
+--
+--  Created by Roman Podymov on 07/07/2024.
+--  Copyright © 2024 Cut The Land. All rights reserved.
+--
+
 CELL_STATE_FILLED = 1
 CELL_STATE_PLAYER = 2
 CELL_STATE_EMPTY = 3
