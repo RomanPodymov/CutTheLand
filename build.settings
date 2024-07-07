@@ -1,0 +1,24 @@
+settings =
+{
+    orientation =
+    {
+        default = "landscapeLeft",
+        supported = { "landscapeRight", "landscapeLeft" }
+    },
+    iphone =
+    {
+        plist =
+        {
+            CFBundleDisplayName = "Cut The Land",
+            CFBundleName = "Cut The Land"
+        }
+    },
+    plugins = {
+        ["plugin.GBCDataCabinet"] = {
+            publisherId = "com.gamesbycandlelight",
+        },
+        ["plugin.GBCLanguageCabinet"] = {
+            publisherId = "com.gamesbycandlelight",
+        },
+    },
+}
