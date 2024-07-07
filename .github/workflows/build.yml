@@ -1,0 +1,18 @@
+name: Lua
+
+on:
+  push:
+    branches: [ "main", "feature/github_actions" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.6
+      - name: Build
+        run: ./Util/build.sh
