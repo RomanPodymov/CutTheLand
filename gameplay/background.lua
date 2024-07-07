@@ -17,10 +17,10 @@ local BACKGROUND_COLOR_EMPTY_G = 0.0
 local BACKGROUND_COLOR_EMPTY_B = 0.0
 
 function Background(_centerX, _centerY, _width, _height)
-	local self = {
-	}
+    local self = {
+    }
 
-	local centerX = _centerX
+    local centerX = _centerX
     local centerY = _centerY
     local width = _width
     local height = _height
@@ -33,8 +33,8 @@ function Background(_centerX, _centerY, _width, _height)
     local handleEnts = true
 
     function self.create(sceneGroup, eventsTimeInterval, stageNumber)
-    	self.createScene(sceneGroup, eventsTimeInterval, true, stageNumber)
-	end
+        self.createScene(sceneGroup, eventsTimeInterval, true, stageNumber)
+    end
 
     function self.createEntity(startY, startX, sceneGroup, eventsTimeInterval, stageNumber, entityClass)
         local currentStage = stages.getStage(stageNumber)
@@ -101,13 +101,13 @@ function Background(_centerX, _centerY, _width, _height)
     end
 
     function self.onSwipeTop()
-		for i = 1, #enteties do
+	    for i = 1, #enteties do
             enteties[i].onSwipeTop()
         end
     end
 
     function self.onSwipeBottom()
-		for i = 1, #enteties do
+	    for i = 1, #enteties do
             enteties[i].onSwipeBottom()
         end
     end
@@ -139,11 +139,11 @@ function Background(_centerX, _centerY, _width, _height)
     end
 
     function self.canMoveLeft(indexI, indexJ)
-    	return self.canMoveBase(indexI, indexJ, 0, -1)
+        return self.canMoveBase(indexI, indexJ, 0, -1)
     end
 
     function self.canMoveRight(indexI, indexJ)
-		return self.canMoveBase(indexI, indexJ, 0, 1)
+	    return self.canMoveBase(indexI, indexJ, 0, 1)
     end
 
     function self.canMoveDown(indexI, indexJ)
@@ -155,11 +155,11 @@ function Background(_centerX, _centerY, _width, _height)
     end
 
     function self.canMoveUpRight(indexI, indexJ)
-    	return self.canMoveBase(indexI, indexJ, -1, 1)
+        return self.canMoveBase(indexI, indexJ, -1, 1)
     end
 
     function self.canMoveDownRight(indexI, indexJ)
-		return self.canMoveBase(indexI, indexJ, 1, 1)
+	    return self.canMoveBase(indexI, indexJ, 1, 1)
     end
 
     function self.canMoveDownLeft(indexI, indexJ)
@@ -171,7 +171,7 @@ function Background(_centerX, _centerY, _width, _height)
     end
 
     function self.paintCell(i, j, color_a, color_b, color_c) 
-    	rects[i][j]:setFillColor( color_a, color_b, color_c )
+        rects[i][j]:setFillColor( color_a, color_b, color_c )
     end
 
     function self.replaceCellsAfterCutting()
@@ -512,9 +512,9 @@ function Background(_centerX, _centerY, _width, _height)
     end
 
     function self.restartLevel(stageNumber)
-    	self.removeAllEnt()
+        self.removeAllEnt()
         self.removeUnfinishedWay()
-    	self.createScene(group, timeInterval, false, stageNumber)
+        self.createScene(group, timeInterval, false, stageNumber)
     end
 
     return self
