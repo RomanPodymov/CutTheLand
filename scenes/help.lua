@@ -1,3 +1,11 @@
+--
+--  help.lua
+--  Cut The Land
+--
+--  Created by Roman Podymov on 07/07/2024.
+--  Copyright © 2024 Cut The Land. All rights reserved.
+--
+
 local composer = require("composer")
 local widget = require("widget")
 local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")

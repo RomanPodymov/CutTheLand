@@ -1,3 +1,11 @@
+--
+--  entity.lua
+--  Cut The Land
+--
+--  Created by Roman Podymov on 07/07/2024.
+--  Copyright © 2024 Cut The Land. All rights reserved.
+--
+
 MOVE_DIRECTION_NONE = 0
 MOVE_DIRECTION_LEFT = 1
 MOVE_DIRECTION_RIGHT = 2
@@ -9,28 +17,28 @@ MOVE_DIRECTION_DOWN_LEFT = 7
 MOVE_DIRECTION_UP_LEFT = 8
 
 function Entity()
-	local self = {
-		drawable = nil,
-		moveDirection = nil,
-		background = nil,
-		indexI = 0,
+    local self = {
+        drawable = nil,
+        moveDirection = nil,
+        background = nil,
+        indexI = 0,
         indexJ = 0,
-		size = 0,
-		locked = false,
+        size = 0,
+        locked = false,
         eventsTimeInterval = 1000,
         isCutting = false,
         needToStop = false,
         directions = {}
-	}
+    }
 
-	function self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
-		self.drawable = nil
-		self.moveDirection = MOVE_DIRECTION_NONE
-		self.indexI = initialIndexI
+    function self.createEntityBase(initialIndexI, initialIndexJ, size, background, eventsTimeInterval)
+        self.drawable = nil
+        self.moveDirection = MOVE_DIRECTION_NONE
+        self.indexI = initialIndexI
         self.indexJ = initialIndexJ
-		self.size = size
-		self.background = background
-		self.locked = false
+        self.size = size
+        self.background = background
+        self.locked = false
         self.eventsTimeInterval = eventsTimeInterval
 	end
 
@@ -59,12 +67,12 @@ function Entity()
     end
 
    	function self.deepCopyWatchedList(watchedCellsArray)
-		local result = {}
-		for i = 1, #watchedCellsArray do
-			table.insert(result, {watchedCellsArray[i][1], watchedCellsArray[i][2]})
-		end
-		return result
-	end
+        local result = {}
+        for i = 1, #watchedCellsArray do
+            table.insert(result, {watchedCellsArray[i][1], watchedCellsArray[i][2]})
+        end
+        return result
+    end
 
     function self.nextDirection(direction)
         local directionToUse = direction or self.moveDirection
@@ -82,25 +90,25 @@ function Entity()
         end
     end
 
-	function self.onSwipeLeft()
+    function self.onSwipeLeft()
 
-	end
+    end
 
-	function self.onSwipeRight()
+    function self.onSwipeRight()
 
-	end
+    end
 
-	function self.onSwipeTop()
+    function self.onSwipeTop()
 
-	end
+    end
 
-	function self.onSwipeBottom()
+    function self.onSwipeBottom()
 
-	end
+    end
 
-	function self.onMove() 
+    function self.onMove() 
 		
-	end
+    end
 
 	function self.onEntityNeedsToChangePositionOnBoard(j, direction, ent)
         
