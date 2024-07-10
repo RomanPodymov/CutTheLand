@@ -13,11 +13,9 @@ jobs:
 
     steps:
       - name: Checkout
-        id: hello
         uses: actions/checkout@v4.1.6
       - name: Build
-        id: world
         run: ./Util/build.sh
-      - name: Check on failures
-        if: (${{ success() }} || ${{ failure() }}) && (${{ steps.hello.outcome }} == 'failure' || ${{ steps.world.outcome }} == 'failure')
+      - name: Check build results
+        if: ${{ hashFiles('./Build/Cut_The_Land') != '' }}
         run: exit 1
