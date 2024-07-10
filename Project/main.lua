@@ -108,7 +108,7 @@ local function systemEvents(event)
     end
     return true
 end
-just_wrong_text
+
 setupLocalDatabase()
 setupTranslations()
 Runtime:addEventListener("system", systemEvents)
