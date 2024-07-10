@@ -1,8 +1,8 @@
-name: Lua
+name: CutTheLandJobs
 
 on:
   push:
-    branches: [ "main", "feature/github_actions" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 

@@ -8,9 +8,13 @@
 
 local composer = require("composer")
 local widget = require("widget")
-local GBCDataCabinet = require("plugin.GBCDataCabinet") -- TODO
 local utility = require("utility")
 local stages = require("gameplay.stages")
+
+local GBCDataCabinet = null
+if (isModuleAvailable("plugin.GBCDataCabinet")) then
+    GBCDataCabinet = require('plugin.GBCDataCabinet')
+end
 
 local scene = composer.newScene()
 local nextLevel
@@ -40,8 +44,10 @@ function scene:create(event)
     if (nextLevel > stages.getStagesCount()) then
         nextLevel = stages.getStagesCount()
     else
-        GBCDataCabinet.set(M.databaseName(), M.databaseFieldLevelName(), nextLevel)
-        GBCDataCabinet.save(M.databaseName())
+        if not(GBCDataCabinet == null) then
+            GBCDataCabinet.set(M.databaseName(), M.databaseFieldLevelName(), nextLevel)
+            GBCDataCabinet.save(M.databaseName())
+        end
     end
     local nextLevelText = display.newText(utility.translate("NEXT_LEVEL_TEXT") .. nextLevel, display.contentCenterX, display.contentCenterY, native.systemFontBold, 48)
     nextLevelText:setFillColor(0)

@@ -58,9 +58,9 @@ end
 
 function M.translate(key)
     if (GBCLanguageCabinet == nil) then
-        return ""
+        return key
     end
-    return GBCLanguageCabinet.getText(key, M.getCurrentLanguage()) or ""
+    return GBCLanguageCabinet.getText(key, M.getCurrentLanguage()) or key
 end
 
 function M.createBackground()
@@ -72,7 +72,7 @@ function M.createBackground()
 end
 
 function M.createButton(buttonId, buttonTextKey, handleButtonEvent)
-	local buttonText = ""
+	local buttonText = buttonId
     if not(GBCLanguageCabinet == null) then
         buttonText = GBCLanguageCabinet.getText(buttonTextKey, M.getCurrentLanguage())
     end
@@ -124,14 +124,17 @@ function M.databaseFieldLevelName()
 end
 
 function M.getUserLevel()
-	--[[ local availableLevelsForUser = GBCDataCabinet.get(M.databaseName(), M.databaseFieldLevelName())
+    if (GBCDataCabinet == null) then
+        return 1
+    end
+
+	local availableLevelsForUser = GBCDataCabinet.get(M.databaseName(), M.databaseFieldLevelName())
     if (not availableLevelsForUser) then
     	availableLevelsForUser = 1
     	GBCDataCabinet.set(M.databaseName(), M.databaseFieldLevelName(), availableLevelsForUser)
     	GBCDataCabinet.save(M.databaseName())
     end
-    return availableLevelsForUser ]]--
-    return 1
+    return availableLevelsForUser
 end
 
 function M.removeAllScenes()
