@@ -17,5 +17,5 @@ jobs:
       - name: Build
         run: ./Util/build.sh
       - name: Check build results
-        if: ${{ hashFiles('./Build/Cut_The_Land') != '' }}
+        if: ${{ hashFiles('./Builda/Cut_The_Land') != '' }}
         run: exit 1
