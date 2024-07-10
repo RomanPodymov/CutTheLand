@@ -6,10 +6,33 @@
 --  Copyright © 2024 Cut The Land. All rights reserved.
 --
 
+function isModuleAvailable(name)
+    if package.loaded[name] then
+        return true
+    else
+        for _, searcher in ipairs(package.searchers or package.loaders) do
+            local loader = searcher(name)
+            if type(loader) == 'function' then
+                package.preload[name] = loader
+                return true
+            end
+        end
+        return false
+    end
+end
+
+local GBCLanguageCabinet = null
+if (isModuleAvailable("plugin.GBCLanguageCabinet")) then
+    GBCLanguageCabinet = require('plugin.GBCLanguageCabinet')
+end
+
+local GBCDataCabinet = null
+if (isModuleAvailable("plugin.GBCDataCabinet")) then
+    GBCDataCabinet = require('plugin.GBCDataCabinet')
+end
+
 local composer = require("composer")
 local widget = require("widget")
--- local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
--- local GBCDataCabinet = require("plugin.GBCDataCabinet")
 
 M = {}
 M.BUTTON_WIDTH = display.contentWidth/2.8
@@ -20,19 +43,24 @@ local BACKGROUND_COLOR_FILL_G = 0.8
 local BACKGROUND_COLOR_FILL_B = 0.8
 
 function M.getCurrentLanguage()
-    --[[] local allLangs = GBCLanguageCabinet.getLanguages()
+    if (GBCLanguageCabinet == nil) then
+        return "en"
+    end
+    local allLangs = GBCLanguageCabinet.getLanguages()
     local currentLang = GBCLanguageCabinet.getDeviceLanguage()
     for i = 1, #allLangs do
         if (currentLang == allLangs[i]["key"]) then
             return currentLang
         end
     end
-    return "en" ]]--
     return "en"
 end
 
 function M.translate(key)
-    return "" --GBCLanguageCabinet.getText(key, M.getCurrentLanguage())
+    if (GBCLanguageCabinet == nil) then
+        return ""
+    end
+    return GBCLanguageCabinet.getText(key, M.getCurrentLanguage()) or ""
 end
 
 function M.createBackground()
@@ -44,7 +72,10 @@ function M.createBackground()
 end
 
 function M.createButton(buttonId, buttonTextKey, handleButtonEvent)
-	local buttonText = "" -- GBCLanguageCabinet.getText(buttonTextKey, M.getCurrentLanguage())
+	local buttonText = ""
+    if not(GBCLanguageCabinet == null) then
+        buttonText = GBCLanguageCabinet.getText(buttonTextKey, M.getCurrentLanguage())
+    end
     return widget.newButton({
         id = buttonId,
         label = buttonText,
