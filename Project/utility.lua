@@ -8,8 +8,8 @@
 
 local composer = require("composer")
 local widget = require("widget")
-local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
-local GBCDataCabinet = require("plugin.GBCDataCabinet")
+-- local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
+-- local GBCDataCabinet = require("plugin.GBCDataCabinet")
 
 M = {}
 M.BUTTON_WIDTH = display.contentWidth/2.8
@@ -20,14 +20,19 @@ local BACKGROUND_COLOR_FILL_G = 0.8
 local BACKGROUND_COLOR_FILL_B = 0.8
 
 function M.getCurrentLanguage()
-    local allLangs = GBCLanguageCabinet.getLanguages()
+    --[[] local allLangs = GBCLanguageCabinet.getLanguages()
     local currentLang = GBCLanguageCabinet.getDeviceLanguage()
     for i = 1, #allLangs do
         if (currentLang == allLangs[i]["key"]) then
             return currentLang
         end
     end
+    return "en" ]]--
     return "en"
+end
+
+function M.translate(key)
+    return "" --GBCLanguageCabinet.getText(key, M.getCurrentLanguage())
 end
 
 function M.createBackground()
@@ -39,7 +44,7 @@ function M.createBackground()
 end
 
 function M.createButton(buttonId, buttonTextKey, handleButtonEvent)
-	local buttonText = GBCLanguageCabinet.getText(buttonTextKey, M.getCurrentLanguage())
+	local buttonText = "" -- GBCLanguageCabinet.getText(buttonTextKey, M.getCurrentLanguage())
     return widget.newButton({
         id = buttonId,
         label = buttonText,
@@ -88,13 +93,14 @@ function M.databaseFieldLevelName()
 end
 
 function M.getUserLevel()
-	local availableLevelsForUser = GBCDataCabinet.get(M.databaseName(), M.databaseFieldLevelName())
+	--[[ local availableLevelsForUser = GBCDataCabinet.get(M.databaseName(), M.databaseFieldLevelName())
     if (not availableLevelsForUser) then
     	availableLevelsForUser = 1
     	GBCDataCabinet.set(M.databaseName(), M.databaseFieldLevelName(), availableLevelsForUser)
     	GBCDataCabinet.save(M.databaseName())
     end
-    return availableLevelsForUser
+    return availableLevelsForUser ]]--
+    return 1
 end
 
 function M.removeAllScenes()

@@ -13,12 +13,4 @@ settings =
             CFBundleName = "Cut The Land"
         }
     },
-    plugins = {
-        ["plugin.GBCDataCabinet"] = {
-            publisherId = "com.gamesbycandlelight",
-        },
-        ["plugin.GBCLanguageCabinet"] = {
-            publisherId = "com.gamesbycandlelight",
-        },
-    },
 }

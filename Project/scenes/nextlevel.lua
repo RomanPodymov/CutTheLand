@@ -9,7 +9,6 @@
 local composer = require("composer")
 local widget = require("widget")
 local GBCDataCabinet = require("plugin.GBCDataCabinet")
-local GBCLanguageCabinet = require ("plugin.GBCLanguageCabinet")
 local utility = require("utility")
 local stages = require("gameplay.stages")
 
@@ -29,7 +28,7 @@ function scene:create(event)
 
     sceneGroup:insert(utility.createBackground())
 
-    local wooHooOptions = {text = GBCLanguageCabinet.getText("CONGRATULATIONS", utility.getCurrentLanguage()), fontSize = 42, font = native.systemFontBold, align = "center"}
+    local wooHooOptions = {text = utility.translate("CONGRATULATIONS"), fontSize = 42, font = native.systemFontBold, align = "center"}
 
     local wooHooText = display.newText(wooHooOptions)
     wooHooText.x = display.contentCenterX 
@@ -44,7 +43,7 @@ function scene:create(event)
         GBCDataCabinet.set(M.databaseName(), M.databaseFieldLevelName(), nextLevel)
         GBCDataCabinet.save(M.databaseName())
     end
-    local nextLevelText = display.newText(GBCLanguageCabinet.getText("NEXT_LEVEL_TEXT", utility.getCurrentLanguage()) .. nextLevel, display.contentCenterX, display.contentCenterY, native.systemFontBold, 48)
+    local nextLevelText = display.newText(utility.translate("NEXT_LEVEL_TEXT") .. nextLevel, display.contentCenterX, display.contentCenterY, native.systemFontBold, 48)
     nextLevelText:setFillColor(0)
     sceneGroup:insert(nextLevelText)
 
