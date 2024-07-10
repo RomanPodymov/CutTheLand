@@ -1,10 +1,9 @@
 local params = { 
-   platform='html5', 
+   platform='windows', 
    appName='Cut_The_Land', 
    appVersion='1.0.0', 
    dstPath='../', 
-   projectPath='../', 
-   includeStandardResources = 'true', 
+   projectPath='../'
 } 
 
 return params
