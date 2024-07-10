@@ -8,7 +8,6 @@
 
 local composer = require("composer")
 local widget = require("widget")
-local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
 local utility = require("utility")
 
 local scene = composer.newScene() 
@@ -51,7 +50,7 @@ function scene:create(event)
                                                  bottomPadding = 10,
                                                  backgroundColor = {1.0, 1.0, 1.0, 1.0}})
     local optionsHelpText = {
-        text = GBCLanguageCabinet.getText("HELP_TEXT", M.getCurrentLanguage()),
+        text = utility.translate("HELP_TEXT"),
         x = scrollViewText.width/2.0,
         width = scrollViewText.width - 20,
         font = native.systemFont,

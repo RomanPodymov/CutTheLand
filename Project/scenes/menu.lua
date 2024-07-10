@@ -8,7 +8,6 @@
 
 local composer = require("composer")
 local widget = require("widget")
-local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
 local utility = require("utility")
 
 local scene = composer.newScene()

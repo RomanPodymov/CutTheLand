@@ -1,0 +1,21 @@
+name: CutTheLandJobs
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.6
+      - name: Build
+        run: ./Util/build.sh
+      - name: Check build results
+        if: ${{ hashFiles('./Build/Cut_The_Land.app') == '' }}
+        run: exit 1

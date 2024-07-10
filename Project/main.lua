@@ -7,15 +7,27 @@
 --
 
 local composer = require("composer")
-local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
-local GBCDataCabinet = require("plugin.GBCDataCabinet")
 local utility = require("utility")
+
+local GBCLanguageCabinet = null
+if (isModuleAvailable("plugin.GBCLanguageCabinet")) then
+    GBCLanguageCabinet = require('plugin.GBCLanguageCabinet')
+end
+
+local GBCDataCabinet = null
+if (isModuleAvailable("plugin.GBCDataCabinet")) then
+    GBCDataCabinet = require('plugin.GBCDataCabinet')
+end
 
 display.setStatusBar(display.HiddenStatusBar)
 
 math.randomseed(os.time())
 
 local function setupLocalDatabase()
+    if (GBCDataCabinet == nil) then
+        return
+    end
+
     local isDatabaseExists = GBCDataCabinet.load(utility.databaseName())
     if (not isDatabaseExists) then
         GBCDataCabinet.createCabinet(utility.databaseName())
@@ -26,6 +38,10 @@ local function setupLocalDatabase()
 end
 
 local function setupTranslations()
+    if (GBCLanguageCabinet == nil) then
+        return
+    end
+
     GBCLanguageCabinet.addLanguage("English", "en")
     GBCLanguageCabinet.addLanguage("Russian", "ru")
     GBCLanguageCabinet.addText("NEW_GAME", {

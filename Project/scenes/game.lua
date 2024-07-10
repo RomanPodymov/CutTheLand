@@ -10,7 +10,6 @@ local composer = require("composer")
 local widget = require("widget")
 local json = require("json")
 local background = require("gameplay.background")
-local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
 local utility = require("utility")
 
 local scene = composer.newScene()
@@ -61,21 +60,21 @@ function scene:create(event)
     sceneGroup:insert(levelText)
 
     local backBtn = widget.newButton({
-        label = GBCLanguageCabinet.getText("BACK", utility.getCurrentLanguage()),
+        label = utility.translate("BACK"),
         onEvent = onBackBtnPressed
     })
     sceneGroup:insert(backBtn)
     backBtn.x = 50
     backBtn.y = 20
 
-    currentScoreDisplayLabel = display.newText(GBCLanguageCabinet.getText("PROGRESS", utility.getCurrentLanguage()), 120, 20, native.systemFont, 16)
+    currentScoreDisplayLabel = display.newText(utility.translate("PROGRESS"), 120, 20, native.systemFont, 16)
     currentScoreDisplayLabel:setFillColor(0.0, 0.0, 0.0)
     sceneGroup:insert(currentScoreDisplayLabel)
     currentScoreDisplay = display.newText("0%", 120, 42, native.systemFont, 16)
     currentScoreDisplay:setFillColor(0.0, 0.0, 0.0)
     sceneGroup:insert(currentScoreDisplay)
 
-    currentPlayersDisplayLabel = display.newText(GBCLanguageCabinet.getText("PLAYERS", utility.getCurrentLanguage()), 200, 20, native.systemFont, 16)
+    currentPlayersDisplayLabel = display.newText(utility.translate("PLAYERS"), 200, 20, native.systemFont, 16)
     currentPlayersDisplayLabel:setFillColor(0.0, 0.0, 0.0)
     sceneGroup:insert(currentPlayersDisplayLabel)
     currentPlayersDisplay = display.newText("0", 200, 42, native.systemFont, 16)

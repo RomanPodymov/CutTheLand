@@ -9,7 +9,6 @@
 local composer = require("composer")
 local widget = require("widget")
 local json = require("json")
-local GBCLanguageCabinet = require("plugin.GBCLanguageCabinet")
 local utility = require("utility")
 
 local scene = composer.newScene()
@@ -27,7 +26,7 @@ function scene:create(event)
 
     sceneGroup:insert(utility.createBackground())
 
-    local gameOverText = display.newText(GBCLanguageCabinet.getText("GAME_OVER", utility.getCurrentLanguage()), 0, 0, native.systemFontBold, 32)
+    local gameOverText = display.newText(utility.translate("GAME_OVER"), 0, 0, native.systemFontBold, 32)
     gameOverText:setFillColor(0)
     gameOverText.x = display.contentCenterX
     gameOverText.y = 50

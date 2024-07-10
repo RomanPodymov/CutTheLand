@@ -9,8 +9,6 @@
 local composer = require("composer")
 local widget = require("widget")
 local stages = require("gameplay.stages")
-local GBCLanguageCabinet = require ("plugin.GBCLanguageCabinet")
-local GBCDataCabinet = require("plugin.GBCDataCabinet")
 local utility = require("utility")
 
 local scene = composer.newScene()
@@ -38,7 +36,7 @@ function scene:create(event)
  
     sceneGroup:insert(utility.createBackground())
 
-    local selectLevelText = display.newText(GBCLanguageCabinet.getText("SELECT_LEVEL", utility.getCurrentLanguage()), 125, 32, native.systemFontBold, 32)
+    local selectLevelText = display.newText(utility.translate("SELECT_LEVEL"), 125, 32, native.systemFontBold, 32)
     selectLevelText:setFillColor(0)
     selectLevelText.x = display.contentCenterX
     selectLevelText.y = 40
