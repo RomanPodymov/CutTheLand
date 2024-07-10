@@ -1,4 +1,4 @@
-local root = os.getenv('GITHUB_WORKSPACE') or os.getenv('WORKSPACE')
+local root = os.getenv('GITHUB_WORKSPACE') or os.getenv('WORKSPACE') or ".."
 
 local params = { 
    platform='macOS', 
