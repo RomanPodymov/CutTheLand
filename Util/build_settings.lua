@@ -1,9 +1,9 @@
 local params = { 
-   platform='Windows', 
+   platform='macOS', 
    appName='Cut_The_Land', 
    appVersion='1.0.0', 
-   dstPath='../', 
-   projectPath='../'
+   dstPath='../Build', 
+   projectPath='../Project'
 } 
 
 return params
