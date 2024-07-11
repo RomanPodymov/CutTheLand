@@ -28,13 +28,13 @@ local selectedLevel
 
 local function onBackBtnPressed(event)
     if event.phase == "ended" then
-        utility.goToScene("scenes.levelSelect")
+        utility.goToScene("scenes.levelselect")
     end
     return true
 end
 
 local function handleWin()
-    utility.goToScene("scenes.nextLevel", {selectedLevelKey = selectedLevel})
+    utility.goToScene("scenes.nextlevel", {selectedLevelKey = selectedLevel})
 end
 
 local function handleLoss()

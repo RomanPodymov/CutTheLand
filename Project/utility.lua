@@ -72,7 +72,7 @@ function M.createBackground()
 end
 
 function M.createButton(buttonId, buttonTextKey, handleButtonEvent)
-	local buttonText = buttonId
+	local buttonText = buttonTextKey
     if not(GBCLanguageCabinet == null) then
         buttonText = GBCLanguageCabinet.getText(buttonTextKey, M.getCurrentLanguage())
     end
