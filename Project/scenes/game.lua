@@ -6,7 +6,7 @@
 --  Copyright © 2024 Cut The Land. All rights reserved.
 --
 
-local composer = require("composer"
+local composer = require("composer")
 local widget = require("widget")
 local json = require("json")
 local background = require("gameplay.background")
